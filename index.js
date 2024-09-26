@@ -99,48 +99,66 @@ let ucetambolunenler,
   tekraredensayilar;
 
 // 3a çözümü
+//enbuyuk ve enkucuk isminde 2 adet değişken tanımlayın ve sayilar dizisindeki en küçük sayı ile en büyük sayıyı bu değişkenlere atayın. (for döngüsü kullanın)
 
-let enBuyuk = sayilar[0];
-let enKucuk = sayilar[0];
+enbuyuk = sayilar[0];
+enkucuk = sayilar[0];
 for (let i = 1; i < sayilar.length; i++) {
-  if (sayilar[i] > enBuyuk) {
-      enBuyuk = sayilar[i];
+  if (sayilar[i] > enbuyuk) {
+      enbuyuk = sayilar[i];
   }
-  if (sayilar[i] < enKucuk) {
-      enKucuk = sayilar[i];
+  if (sayilar[i] < enkucuk) {
+      enkucuk = sayilar[i];
   }
 }
     
 
 // 3b çözümü:
 //`ucetambolunenler` adında bir dizi tanımlayın ve bu diziye sayilar dizisindeki 3'ün tam katı olan sayıları atayın (.forEach metodunu kullanın)
-let uceTamBolunenler = [];
+ucetambolunenler = [];
 sayilar.forEach( (number) => {
   if (number % 3 === 0) {
-    uceTamBolunenler.push(number);
+    ucetambolunenler.push(number);
   }
 });
   
 // 3c çözümü:
 //`ucetambolunenler` dizisindeki sayıların toplamını .reduce metoduyla bulup, sonucu `ucebolunenlerintoplami` değişkenine yazdırın (.reduce metodunu kullanın)
-let uceBolunenlerinToplami = uceTamBolunenler.reduce( (total,num) => total + num, 0);
+ucebolunenlerintoplami = ucetambolunenler.reduce( (total,num) => total + num, 0);
 
 // 3d çözümü
 //`besyuzdenkucuksayilar` adında bir dizi oluşturarak, sayilar dizisinin içindeki 500'den küçük sayıları bu diziye atayın (.filter metodunu kullanın)
-let besyuzdenKucukSayilar = [];
-besyuzdenKucukSayilar = sayilar.filter((nmbr)=> nmbr < 500 );
+besyuzdenkucuksayilar = sayilar.filter((nmbr)=> nmbr < 500 );
 
 // 3e çözümü
 //besyuzdenkucuksayilar dizisindeki sayıları küçükten büyüğe sıralayıp `siralisayilar` adındaki bir diziye aktarın (.sort metodunu kullanın)
-let siraliSayilar =[];
-siraliSayilar = besyuzdenKucukSayilar.sort( (a,b) => a-b);
+siralisayilar = besyuzdenkucuksayilar.sort( (a,b) => a-b);
 
 // 3f çözümü
-/*`tekraredensayilar` adında bir dizi oluşturun. sayilar dizisi içerisindeki bazı sayılar birden fazla kere yazılmış. sayilar dizisi içerisinde birden fazla kez yazılmış sayıları tespit ederek kaç kere tekrar edildiğini belirten bir string oluşturulup `tekraredensayilar` dizisine aktarılmasını istiyoruz. Örnek string: "{sayı} sayısı {tekrarSayisi} kere tekrar edilmiştir"
+/*`tekraredensayilar` adında bir dizi oluşturun. sayilar dizisi içerisindeki bazı sayılar birden fazla kere yazılmış. 
+sayilar dizisi içerisinde birden fazla kez yazılmış sayıları tespit ederek kaç kere tekrar edildiğini belirten bir string oluşturulup 
+`tekraredensayilar` dizisine aktarılmasını istiyoruz. 
+Örnek string: "{sayı} sayısı {tekrarSayisi} kere tekrar edilmiştir"
 ÖRNEK: sayilar dizisi içerisinde 45 sayısı 3 kere yazılmış. "45 sayısı 3 tekrar edilmiştir" stringini `tekraredensayilar` dizisine aktaracağız.
-İPUCU: Tekrar edilen sayıları ve kaç kere tekrar edildiğini kaydetmek için bir nesne tanımlamalısınız, bu görevi yapabilmek için en az 2 kere döngü yazmalısınız. Birinci döngüde hangi sayının kaç kere tekrar edildiğini tespit edip, 2. döngüde stringi oluşturup verilen diziye aktarmalısınız.
+İPUCU: Tekrar edilen sayıları ve kaç kere tekrar edildiğini kaydetmek için bir nesne tanımlamalısınız, 
+bu görevi yapabilmek için en az 2 kere döngü yazmalısınız. 
+Birinci döngüde hangi sayının kaç kere tekrar edildiğini tespit edip, 2. döngüde stringi oluşturup verilen diziye aktarmalısınız.
 */
-let tekrarEdenSayilar = [];
+const tekraredensayilarObjesi = {};
+tekraredensayilar = [];
+
+sayilar.forEach((sayi) => {
+  if (tekraredensayilarObjesi[sayi]) {
+    tekraredensayilarObjesi[sayi] += 1;
+  } else {
+    tekraredensayilarObjesi[sayi] = 1;
+  }
+});
+for (let enaktar in tekraredensayilarObjesi) {
+  tekraredensayilar.push(
+    `${enaktar} sayısı ${tekraredensayilarObjesi[enaktar]} kere tekrar edilmiştir`
+  );
+}
 
 
 /*  Bu satırın aşağısındaki kodları lütfen değiştirmeyin  */
